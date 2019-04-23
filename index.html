@@ -13,7 +13,7 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div id="addbutton" class="col-md-10"></div>
+                <div id="buttonArea" class="col-md-10"></div>
             </div>
 
             <div class="row">
@@ -28,9 +28,27 @@
         </head>
         <body>
             <script type="text/javascript">
-            $(document).ready(function(){
+            
                 var avengers = ["Captain America","Hulk","Black Panther","Thor","Iron-Man"];
-            }
+                var newAvengers = "";
+                 function createButtons (){
+                     $("#buttonArea").empty();
+                     $("#user-input").val("");
+                      for ( var i = 0; i<avengers.length; i++){
+                          var button = $("<button class= 'btn btn-danger'>");
+                          button.addClass("avenger");
+                          button.attr("avenger-name", avengers[i]);
+                          button.text(avengers[i]);
+                          $("#buttonArea").append(button);
+                          $("#buttonArea").append("");
+                      }
+                 }
+                 createButtons();
+
+                 
+
+                
+            
 
             </script>
 
