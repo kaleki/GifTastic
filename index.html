@@ -21,7 +21,7 @@
                 <form class="col-md-4">
                     New Avengers
                     <input type="text" id="user-input">
-                    <input type="submit" class="newButton" id="submit">
+                    <input type="submit" class="newButton" id="newAvenger">
                 </form>
             </div>
         </div>
@@ -45,7 +45,32 @@
                  }
                  createButtons();
 
-                 
+                 $("#newAvenger").on("click", function(event){
+                    var userInput = $("#user-input").val().trim();
+                    var avengerName = $(this).attr("avenger-name");
+
+
+                 })
+
+                
+
+                 var avengerName = $(this).attr("avenger-name");
+
+                 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + avengerName + "&limit=10&api_key=DAJNqs74lBaF9FUDlroX06wk4xnxaeiG";
+
+                 $.ajax({
+                     url: queryURL,
+                     method:"GET",
+                 }).done(function(response){
+                     for( var i =0; i < response.data.length; i++){
+                         var still = response.data[i].images.fixed_width_still_url;
+                         
+                     }
+
+                 })
+
+
+
 
                 
             
