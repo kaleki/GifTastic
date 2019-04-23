@@ -18,10 +18,11 @@
 
             <div class="row">
                 <div class="gifs col-md-8"></div>
+                <div id="gifs-appear-here"></div>
                 <form class="col-md-4">
                     New Avengers
                     <input type="text" id="user-input">
-                    <input type="submit" class="newButton" id="newAvenger">
+                    <input id="newAvenger" type="submit" class="btn btn-danger" value="Welcome to the Team!">
                 </form>
             </div>
         </div>
@@ -47,7 +48,7 @@
 
                  $("#newAvenger").on("click", function(event){
                     var userInput = $("#user-input").val().trim();
-                    var avengerName = $(this).attr("avenger-name");
+                    var avengerName = $(this).attr("avenger-data");
 
 
                  })
@@ -56,18 +57,29 @@
 
                  var avengerName = $(this).attr("avenger-name");
 
-                 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + avengerName + "&limit=10&api_key=DAJNqs74lBaF9FUDlroX06wk4xnxaeiG";
+                 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + avengerName + "&api_key=DAJNqs74lBaF9FUDlroX06wk4xnxaeiG&limit=10";
 
                  $.ajax({
                      url: queryURL,
                      method:"GET",
                  }).then(function(response){
-                     for( var i =0; i < response.data.length; i++){
-                         var still = response.data[i].images;
+                     var results = response.data;
+                     for (var i = 0; i < results.length; i++){
+
+                         var avengerDiv = $("<div>");
+                         var p = $("<p>").text("Rating:" + results[i].rating);
+                         var avengerImage = $("<img>");
+                         avengerImage.attr("src", results[i],images.fixed_height.url);
+
+                         avengerDiv.append(p);
+                         avengerDiv.append(avengerImage);
+
+                         $("#gifs-appear-here").prepend(avengerDiv);
+                     }
 
                      }
 
-                 })
+                 )
 
 
 
